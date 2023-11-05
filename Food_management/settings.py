@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'communities',
     'hotels',
     'users',
+    'base',
 ]
 
 MIDDLEWARE = [
