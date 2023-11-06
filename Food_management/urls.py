@@ -23,5 +23,6 @@ from Food_management import settings
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('',include('base.urls')), #urls routed to base app
-    path('users/',include('users.urls')), #urls routed to users app
+    path('users/',include('users.urls')),
+    path('communities/',include('communities.urls')), #urls routed to users app
 ]+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
