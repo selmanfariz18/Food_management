@@ -19,3 +19,14 @@ class base_models(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+class Food(models.Model):
+    """Model to manage food."""
+    given_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    food_name = models.CharField(max_length=20)
+    quantity = models.IntegerField()
+    date = models.DateField(blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.food_name} (Given by: {self.given_by.username})"

@@ -42,4 +42,9 @@ def user_logout(request):
     return render(request, 'user_login.html')
 
 def user_home(request):
-    return render(request, 'user_home.html')
+    '''user homepage arranging function'''
+    user = request.user
+    context = {
+        'user': user,
+        }
+    return render(request, 'user_home.html', context)

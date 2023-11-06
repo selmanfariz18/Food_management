@@ -42,4 +42,9 @@ def community_logout(request):
     return render(request, 'community_login.html')
 
 def community_home(request):
-    return render(request, 'community_home.html')
+    '''function for setting community homepage'''
+    user = request.user
+    context = {
+        'user': user,
+        }
+    return render(request, 'community_home.html', context)

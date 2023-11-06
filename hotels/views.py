@@ -4,7 +4,8 @@ from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from base.models import base_models
+from base.models import base_models ,Food
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -42,4 +43,27 @@ def hotel_logout(request):
     return render(request, 'hotel_login.html')
 
 def hotel_home(request):
-    return render(request, 'hotel_home.html')
+    '''home page function for hotel'''
+    user = request.user
+    context = {
+        'user': user,
+        }
+    return render(request, 'hotel_home.html', context)
+
+
+def hotel_contribute(request):
+    '''function for contributing food'''
+    if request.method == 'POST':
+        # get form data
+        food_name = request.POST['food_name']
+        quantity=request.POST['quantity']
+        date = request.POST.get('date', None)
+        user = request.user
+
+
+        food = Food(given_by=user, food_name=food_name, quantity=quantity, date=date)
+        food.save()
+        messages.info(request,'Food Contributed successfully')
+        return HttpResponseRedirect(reverse("hotel_home"))
+
+    return render(request, 'hotel_contribute.html')
