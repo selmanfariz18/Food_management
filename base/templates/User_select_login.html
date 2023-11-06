@@ -29,29 +29,34 @@
 {% endblock %}
 
 {% block content %} {% load static %}
-<h1 class="text-center" >Food Management</h1>
+{% load static %}
+<div class="row">
+  <h1 class="text-center" >Food Management</h1>
 
-<form action="login" method="POST" class="form-horizontal">
-    {% csrf_token%}
-    <div class="mx-auto" style="width: 400px;">
-
-        <div class="col-xs-8 col-xs-offset-4">
-            <h2 style="text-align:center;">SIGN in</h2>
-        </div>
-        <hr />
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" class="form-control" name="username" id="username" placeholder="Enter Username"
-                Required>
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password"
-                Required>
-        </div>
-        <button type="submit" class="btn btn-primary">Sign In</button>
+  <div class="row px-5 my-5" style="text-align:center;">
+    <div class="row">
+      <h5>Choose your type:</h5>
     </div>
-</form>
+    <div class="col">
+      <a href="">
+        <img src="{% static 'content-marketing-communities.png' %}" alt="community" height="250px" width="250px">
+      </a>
+    </div>
+    <div class="col">
+      <a href="">
+        <img src="{% static 'hotel.png' %}" alt="community" height="250px" width="250px">
+      </a>
+    </div>
+    <div class="col">
+      <a href="">
+        <img src="{% static 'user.jpg' %}" alt="community" height="250px" width="250px">
+      </a>
+    </div>
+  </div>
+  <div class="row" style="text-align:center;">
+    <h6>new to here? <a href="">Register now</a></h6>
+  </div>
+</div>
 
 {% endblock %}
 
