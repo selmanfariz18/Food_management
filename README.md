@@ -1,5 +1,9 @@
 # Food_management
 
+### Project is live at [here](https://salmanfariz18.pythonanywhere.com/)
+#### You can select any of the three user type on staring page or can register from there,There community user type can only get food contributions list, other two users types(normal user and hotels) can contribute food. Community can aprove or reject any given contribution.
+#### Also all the user home page will get tips on how to plan meals, store food properly, and use up leftovers
+
 ## Problem:
 
 Food waste will be a major problem in the future, both environmentally and economically. Every year, millions of tons of food will be wasted, which will contribute to climate change and landfills.
