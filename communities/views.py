@@ -66,25 +66,27 @@ def community_food_watch(request):
         'details': details,
     }
 
-    '''for i in foods:
-        print(i.date)'''
 
     return render(request, 'community_food_watch.html', context)
 
 def approve_food(request):
+    user = request.user
     if request.method == 'POST':
         id = request.POST.get("id")
         work_instance = get_object_or_404(Food, id=id)
         work_instance.status="approved"
+        work_instance.taken_by=str(user)
         work_instance.save()
         return HttpResponseRedirect(reverse("community_food_watch"))
 
 
 def delete_food(request):
+    user = request.user
     if request.method == 'POST':
         id = request.POST.get("id")
         work_instance = get_object_or_404(Food, id=id)
         work_instance.status="rejected"
+        work_instance.taken_by=str(user)
         work_instance.save()
         return HttpResponseRedirect(reverse("community_food_watch"))
 
@@ -93,10 +95,13 @@ def community_food_history(request):
     '''Approved or rejected foods history are displayed to community page by this view'''
     foods = Food.objects.all()
     details = base_models.objects.all()
+    user = request.user
+
 
     context = {
         'foods': foods,
         'details': details,
+        'user': str(user),
     }
 
 

@@ -31,6 +31,7 @@ status = (
 class Food(models.Model):
     """Model to manage food."""
     given_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    taken_by = models.CharField(max_length=20, null=True)
     food_name = models.CharField(max_length=20)
     quantity = models.IntegerField()
     date = models.DateField(blank=True, null=True)

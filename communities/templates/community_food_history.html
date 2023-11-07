@@ -60,7 +60,7 @@
     <div class="table-responsive px-3">
         <div class="row">
             {% for i in foods %}
-            {% if i.status == "approved" %}
+            {% if i.status == "approved" and i.taken_by == user %}
             <div class="col-md-4 mb-2">
                 <div class="card" style="">
                     <div class="card-body py-3">
@@ -105,7 +105,7 @@
     <div class="table-responsive px-3">
         <div class="row">
             {% for i in foods %}
-            {% if i.status == "rejected" %}
+            {% if i.status == "rejected" and i.taken_by == user %}
             <div class="col-md-4 mb-2">
                 <div class="card" style="">
                     <div class="card-body py-3">
