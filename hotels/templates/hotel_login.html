@@ -23,12 +23,25 @@
   rel="stylesheet"
 />
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
 {% endblock %}
 
 {% block style %}
 {% endblock %}
 
 {% block content %} {% load static %}
+
+
+<nav class="navbar navbar-expand-lg navbar-light">
+  <a class="navbar-brand" href="/" style="padding-left:20px;"><i class="bi bi-chevron-left"></i></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+</nav>
+
+
 <h1 class="text-center" >Food Management</h1>
 
 <form action="hotel_login" method="POST" class="form-horizontal">

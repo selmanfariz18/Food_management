@@ -2,9 +2,9 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
-from base.models import base_models
+from base.models import base_models, Food
 
 # Create your views here.
 
@@ -48,3 +48,50 @@ def community_home(request):
         'user': user,
         }
     return render(request, 'community_home.html', context)
+
+def community_food_watch(request):
+    '''Contributed foods are displayed to community page by this view'''
+    foods = Food.objects.all()
+    details = base_models.objects.all()
+
+    context = {
+        'foods': foods,
+        'details': details,
+    }
+
+    '''for i in foods:
+        print(i.date)'''
+
+    return render(request, 'community_food_watch.html', context)
+
+def approve_food(request):
+    if request.method == 'POST':
+        id = request.POST.get("id")
+        work_instance = get_object_or_404(Food, id=id)
+        work_instance.status="approved"
+        work_instance.save()
+        return HttpResponseRedirect(reverse("community_food_watch"))
+
+
+def delete_food(request):
+    if request.method == 'POST':
+        id = request.POST.get("id")
+        work_instance = get_object_or_404(Food, id=id)
+        work_instance.status="rejected"
+        work_instance.save()
+        return HttpResponseRedirect(reverse("community_food_watch"))
+
+
+def community_food_history(request):
+    '''Approved or rejected foods history are displayed to community page by this view'''
+    foods = Food.objects.all()
+    details = base_models.objects.all()
+
+    context = {
+        'foods': foods,
+        'details': details,
+    }
+
+
+
+    return render(request, 'community_food_history.html', context)
