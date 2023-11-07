@@ -4,7 +4,8 @@ from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
-from base.models import base_models, Food
+from base.models import base_models, Food, Quote
+import random
 
 # Create your views here.
 
@@ -44,8 +45,14 @@ def community_logout(request):
 def community_home(request):
     '''function for setting community homepage'''
     user = request.user
+    quotes = Quote.objects.all()
+    if quotes:
+        random_quote = random.choice(quotes)
+    else:
+        random_quote = None
     context = {
         'user': user,
+        'quote': random_quote,
         }
     return render(request, 'community_home.html', context)
 

@@ -39,3 +39,7 @@ class Food(models.Model):
 
     def __str__(self):
         return f"{self.food_name} (Given by: {self.given_by.username})"
+
+
+class Quote(models.Model):
+    text = models.TextField()

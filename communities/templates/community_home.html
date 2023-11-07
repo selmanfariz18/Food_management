@@ -29,6 +29,9 @@
 {% endblock %}
 
 {% block content %} {% load static %}
+
+
+<!--nav bar-->
 <nav class="navbar navbar-expand-lg navbar-light">
   <a class="navbar-brand" href="#">{{ user.username }}</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,8 +51,20 @@
       </a>
   </div>
 </nav>
+<!--nav bar ends-->
 
 
+
+<!--Random tips-->
+<div style="display: flex; justify-content: center; align-items: center; height: 83vh;">
+  <div class="row" style="text-align: center;">
+    <h5>Foodie Tips:</h5>
+    <div style="font-size: 24px;">
+      {{ quote.text }}
+    </div>
+  </div>
+</div>
+<!--Random tips ends-->
 
 
 {% endblock %}

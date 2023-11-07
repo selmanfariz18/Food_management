@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from base.models import base_models, Food
+from base.models import base_models, Food, Quote
 
 # Create your views here.
 
@@ -41,11 +41,19 @@ def user_logout(request):
     messages.success(request, "Logout Successfull!")
     return render(request, 'user_login.html')
 
+import random
 def user_home(request):
     '''user homepage arranging function'''
     user = request.user
+    quotes = Quote.objects.all()
+    if quotes:
+        random_quote = random.choice(quotes)
+    else:
+        random_quote = None
+
     context = {
         'user': user,
+        'quote': random_quote,
         }
     return render(request, 'user_home.html', context)
 
