@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from base.models import base_models
+from base.models import base_models, Food
 
 # Create your views here.
 
@@ -48,3 +48,21 @@ def user_home(request):
         'user': user,
         }
     return render(request, 'user_home.html', context)
+
+
+def user_contribute(request):
+    '''function for contributing food'''
+    if request.method == 'POST':
+        # get form data
+        food_name = request.POST['food_name']
+        quantity=request.POST['quantity']
+        date = request.POST.get('date', None)
+        user = request.user
+
+
+        food = Food(given_by=user, food_name=food_name, quantity=quantity, date=date)
+        food.save()
+        messages.info(request,'Food Contributed successfully')
+        return HttpResponseRedirect(reverse("user_home"))
+
+    return render(request, 'user_contribute.html')
